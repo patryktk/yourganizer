@@ -1,11 +1,6 @@
 package com.example.projekt.Model;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -13,10 +8,14 @@ import javax.persistence.Table;
 public class User {
 
     @Id
+    @Column(name = "user_ic")
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @Column(name = "user_username")
     private String username;
+    @Column(name = "user_password")
     private String password;
+    @Column(name = "user_email")
     private String email;
 
     public User(String username, String password, String email) {
