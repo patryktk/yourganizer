@@ -36,6 +36,14 @@ public class Task {
     public Task() {
     }
 
+    public void merge(Task other){
+        setStartDate(other.getStartDate());
+        setEndDate(other.getEndDate());
+        setTitle(other.getTitle());
+        setPriority(other.getPriority());
+        setDesciption(other.getDesciption());
+    }
+
     public Long getId() {
         return id;
     }

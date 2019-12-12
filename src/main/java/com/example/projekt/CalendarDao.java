@@ -30,9 +30,21 @@ public class CalendarDao {
         }
         else return false;
     }
-    
+
     public List<Task> findAllTasks(){
         return taskRepo.findAll();
+    }
+
+    public void updateTask(Long id, Date startDate, Date endDate, String title, Priority priority, String description){
+        Task taskToChange = new Task();
+        taskToChange.setStartDate(startDate);
+        taskToChange.setEndDate(endDate);
+        taskToChange.setTitle(title);
+        taskToChange.setPriority(priority);
+        taskToChange.setDesciption(description);
+
+        Task taskToUpdate = taskRepo.findById(id).get();
+        taskToUpdate.merge(taskToChange);
     }
 
 }
