@@ -30,6 +30,9 @@ public class CalendarDao {
         }
         else return false;
     }
-
+    
+    public List<Task> findAllTasks(){
+        return taskRepo.findAll();
+    }
 
 }
