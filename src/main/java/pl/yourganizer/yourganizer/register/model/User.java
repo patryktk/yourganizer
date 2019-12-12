@@ -1,13 +1,11 @@
 package pl.yourganizer.yourganizer.register.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +13,17 @@ public class User {
     @NotEmpty
     private String username;
     private String password;
+    @Column(name = "email", unique = true)
     @Email
     @NotEmpty
     private String email;
+    @Column(name = "enabled")
+    private boolean enabled;
+    @Column(name = "confirmation_token")
+    private String confirmationToken;
 
     public User() {
+
     }
 
     public long getId() {
@@ -52,5 +56,21 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
     }
 }
