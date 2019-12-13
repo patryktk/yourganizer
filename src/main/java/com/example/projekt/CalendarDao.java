@@ -22,7 +22,7 @@ public class CalendarDao {
         this.userRepo = userRepo;
     }
 
-    public boolean saveTask(Date startDate, Date endDate, String title, Priority priority, String description){
+    public boolean saveTask(String startDate, String endDate, String title, Priority priority, String description){
         Task newTask = new Task(startDate, endDate, title, priority, description);
         taskRepo.save(newTask);
         if (taskRepo.existsById(newTask.getId())){
@@ -35,7 +35,7 @@ public class CalendarDao {
         return taskRepo.findAll();
     }
 
-    public void updateTask(Long id, Date startDate, Date endDate, String title, Priority priority, String description){
+    public void updateTask(Long id, String startDate, String endDate, String title, Priority priority, String description){
         Task taskToChange = new Task();
         taskToChange.setStartDate(startDate);
         taskToChange.setEndDate(endDate);
@@ -45,6 +45,10 @@ public class CalendarDao {
 
         Task taskToUpdate = taskRepo.findById(id).get();
         taskToUpdate.merge(taskToChange);
+    }
+
+    public void deleteTask(Long id){
+        taskRepo.deleteById(id);
     }
 
 }

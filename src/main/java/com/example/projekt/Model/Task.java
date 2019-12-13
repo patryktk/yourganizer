@@ -1,8 +1,10 @@
 package com.example.projekt.Model;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -14,18 +16,17 @@ public class Task {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @Column(name = "task_start_date")
-    private Date startDate;
+    private String startDate;
     @Column(name = "task_end_date")
-    private Date endDate;
+    private String endDate;
     @Column(name = "task_title")
     private String title;
     @Column(name = "task_priority")
-    @ColumnDefault("NORMAL")
     private Priority priority;
     @Column(name = "task_description")
     private String desciption;
 
-    public Task(Date startDate, Date endDate, String title, Priority priority, String desciption) {
+    public Task(String startDate, String endDate, String title, Priority priority, String desciption) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.title = title;
@@ -52,19 +53,19 @@ public class Task {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 

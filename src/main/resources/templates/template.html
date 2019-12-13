@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DB CRUD Test</title></head>
+<body>
+
+<div id="taskslist">
+    <center>
+        <tr th:each="task: ${tasks}">
+            <hr style="width: 70%; height: 10px; background: gray; border: 0px;">
+            ID: <td th:text="${task.getId()}"/>
+            <br>
+            START DATE: <td th:text="${task.getStartDate()}"/>
+            <br>
+            END DATE: <td th:text="${task.getEndDate()}"/>
+            <br>
+            TITLE: <td th:text="${task.getTitle()}"/>
+            <br>
+            PRIORITY: <td th:text="${task.getPriority()}"/>
+            <br>
+            DESCRIPTION: <td th:text="${task.getDesciption()}"/>
+            <br>
+        </tr>
+    </center>
+</div>
+
+<hr style="width: 70%; height: 10px; background: gray; border: 0px;">
+<center>
+<div style="float: left" id="adding">
+    <form th:action="@{/add-task}" th:object="${newTask}" method="post">
+        <p> START DATE:<input type="datetime" th:field = "*{startDate}"></p>
+        <p> END DATE: <input type="datetime" th:field = "*{endDate}"></p>
+        <p> TITLE: <input type="text" th:field = "*{title}"></p>
+        PRIORITY:<br>
+        <input type="radio" name="priority" value="LOWP" th:field = "*{priority}"> LOW<br>
+        <input type="radio" name="priority" value="NORMALP" th:field = "*{priority}"> NORMAL<br>
+        <input type="radio" name="priority" value="HIGHP" th:field = "*{priority}"> HIGH
+        <p> DESCRIPTION: <input type="text" th:field = "*{desciption}"></p>
+        <p><input type="submit" value="ADD NEW TASK"></p>
+    </form>
+</div>
+
+<div style="float: left" id="removing">
+    <form th:action="@{/delete-task}" th:object="${htmlInpit}" method="post">
+        <p> ID TO DELETE:<input type="text" th:field = "*{longType}"></p>
+        <p><input type="submit" value="DELETE TASK"></p>
+    </form>
+</div>
+
+    <div style="float: left" id="updating">
+        <form th:action="@{/update-task}" th:object="${taskToUpdate}" method="post">
+            <p> ID:<input type="text" th:field = "*{id}"></p>
+            <p> START DATE:<input type="text" th:field = "*{startDate}"></p>
+            <p> END DATE: <input type="text" th:field = "*{endDate}"></p>
+            <p> TITLE: <input type="text" th:field = "*{title}"></p>
+            PRIORITY:<br>
+            <input type="radio" name="priority" value="LOWP" th:field = "*{priority}"> LOW<br>
+            <input type="radio" name="priority" value="NORMALP" th:field = "*{priority}"> NORMAL<br>
+            <input type="radio" name="priority" value="HIGHP" th:field = "*{priority}"> HIGH
+            <p> DESCRIPTION: <input type="text" th:field = "*{desciption}"></p>
+            <p><input type="submit" value="UPDATE TASK"></p>
+        </form>
+    </div>
+
+</center>
+</body>
+</html>
